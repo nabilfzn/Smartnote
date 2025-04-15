@@ -52,6 +52,7 @@ FLASK_SERVER_URL=http://192.168.1.100:5000
 - URL yang tidak sesuai (salah IP atau port) akan menyebabkan koneksi gagal antara Streamlit dan Flask.
 
 <br>
+<br>
 
 ## 🧠 Langkah Menjalankan Aplikasi
 1. Jalankan terlebih dahulu server Flask:
@@ -63,6 +64,7 @@ python flask.py
 streamlit run app.py
 ```
 
+<br>
 <br>
 
 
@@ -82,6 +84,8 @@ SmartNote/
 ```
 
 <br>
+<br>
+
 ## ✅ Fitur Utama
 
 🎙️ Kontrol dan Rekam Audio via ESP32
@@ -92,6 +96,8 @@ SmartNote/
 
 
 <br>
+<br>
+
 ## 🛠️ Teknologi yang Digunakan
 
 - Python
@@ -101,6 +107,7 @@ SmartNote/
 - Gemini
 - SD Card Module (ESP32)
 
+<br>
 <br>
 
 ## 🧩 Catatan Tambahan
