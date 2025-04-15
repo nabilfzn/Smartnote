@@ -63,6 +63,7 @@ python flask.py
 streamlit run app.py
 ```
 
+<br>
 
 
 ## 📂 Struktur Proyek (Contoh)
@@ -80,7 +81,7 @@ SmartNote/
 └── README.md
 ```
 
-
+<br>
 ## ✅ Fitur Utama
 
 🎙️ Kontrol dan Rekam Audio via ESP32
@@ -90,7 +91,7 @@ SmartNote/
 📡 Integrasi IoT + AI dalam satu sistem
 
 
-
+<br>
 ## 🛠️ Teknologi yang Digunakan
 
 - Python
@@ -100,7 +101,7 @@ SmartNote/
 - Gemini
 - SD Card Module (ESP32)
 
-
+<br>
 
 ## 🧩 Catatan Tambahan
 - Jika menggunakan ESP32, pastikan firmware yang dipakai sesuai dengan kebutuhan dan bisa menangani:
