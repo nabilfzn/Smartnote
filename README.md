@@ -47,5 +47,60 @@ Contoh:
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
 FLASK_SERVER_URL=http://192.168.1.100:5000
 ```
+#### ⚠️ Catatan Penting:
+- Pastikan semua perangkat (komputer, ESP32, dan server Flask) berada dalam satu jaringan WiFi yang sama.
+- URL yang tidak sesuai (salah IP atau port) akan menyebabkan koneksi gagal antara Streamlit dan Flask.
+
+## 🧠 Langkah Menjalankan Aplikasi
+1. Jalankan terlebih dahulu server Flask:
+```bash
+python flask.py
+```
+2. Setelah Flask aktif, jalankan aplikasi Streamlit:
+```bash
+streamlit run app.py
+```
+
+## 📂 Struktur Proyek (Contoh)
+
+SmartNote/
+├── app.py
+├── flask.py
+├── requirements.txt
+├── .env
+├── utils/
+│   ├── summarizer.py
+│   ├── quiz_generator.py
+│   └── ...
+└── README.md
+
+## ✅ Fitur Utama
+
+🎙️ Kontrol dan Rekam Audio via ESP32
+✂️ Ringkasan Otomatis dari Penjelasan Audio
+📚 Modul Pembelajaran Terstruktur
+❓ Quiz Generator Otomatis
+📡 Integrasi IoT + AI dalam satu sistem
+
+
+## 🛠️ Teknologi yang Digunakan
+
+- Python
+- Streamlit
+- Flask
+- ESP32 + I2S Mic
+- Gemini
+- SD Card Module (ESP32)
+
+## 🧩 Catatan Tambahan
+- Jika menggunakan ESP32, pastikan firmware yang dipakai sesuai dengan kebutuhan dan bisa menangani:
+  
+  - Rekam audio via I2S
+  - Simpan ke SD card
+  - Kirim file via HTTP POST ke Flask server
+
+- Gunakan serial monitor (misal Arduino IDE) untuk melihat log dari ESP32 jika terjadi error saat merekam atau mengupload.
+
+
 
 
