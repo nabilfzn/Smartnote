@@ -1,4 +1,4 @@
-# SmartNote
+# 🧠 SmartNote
 
 **SmartNote** adalah solusi pembelajaran cerdas yang memanfaatkan teknologi **IoT** dan **Generative AI** untuk meningkatkan efektivitas belajar. Dengan kemampuan untuk merekam dan merangkum penjelasan audio secara otomatis, SmartNote membantu memastikan setiap materi tetap terdokumentasi meski disampaikan secara lisan.
 
@@ -51,6 +51,8 @@ FLASK_SERVER_URL=http://192.168.1.100:5000
 - Pastikan semua perangkat (komputer, ESP32, dan server Flask) berada dalam satu jaringan WiFi yang sama.
 - URL yang tidak sesuai (salah IP atau port) akan menyebabkan koneksi gagal antara Streamlit dan Flask.
 
+  
+
 ## 🧠 Langkah Menjalankan Aplikasi
 1. Jalankan terlebih dahulu server Flask:
 ```bash
@@ -61,8 +63,11 @@ python flask.py
 streamlit run app.py
 ```
 
+
+
 ## 📂 Struktur Proyek (Contoh)
 
+```bash
 SmartNote/
 ├── app.py
 ├── flask.py
@@ -73,6 +78,8 @@ SmartNote/
 │   ├── quiz_generator.py
 │   └── ...
 └── README.md
+```
+
 
 ## ✅ Fitur Utama
 
@@ -83,6 +90,7 @@ SmartNote/
 📡 Integrasi IoT + AI dalam satu sistem
 
 
+
 ## 🛠️ Teknologi yang Digunakan
 
 - Python
@@ -91,6 +99,8 @@ SmartNote/
 - ESP32 + I2S Mic
 - Gemini
 - SD Card Module (ESP32)
+
+
 
 ## 🧩 Catatan Tambahan
 - Jika menggunakan ESP32, pastikan firmware yang dipakai sesuai dengan kebutuhan dan bisa menangani:
