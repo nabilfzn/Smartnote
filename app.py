@@ -13,7 +13,7 @@ import requests
 import pandas as pd
 import datetime
 from io import BytesIO
-from dashboard import microfon
+from iot-recorder import microfon
 
 # Load environment variables
 load_dotenv()
