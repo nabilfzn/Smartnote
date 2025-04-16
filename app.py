@@ -253,28 +253,36 @@ def render_home():
         """)
 
 # Halaman Audio to Materi
+# Fungsi untuk menyimpan file upload
+def save_uploaded_file(uploaded_file):
+    try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.' + uploaded_file.name.split('.')[-1]) as tmp_file:
+            tmp_file.write(uploaded_file.getvalue())
+            return tmp_file.name
+    except Exception as e:
+        st.error(f'Kesalahan saat upload file {e}')
+        return None
+
 def render_audio_to_materi():
     st.title("Audio to Materi")
     st.write("Upload rekaman audio untuk diubah menjadi ringkasan dan modul")
 
-    audio_file = None
+    audio_path = None
 
-    # Cek apakah datang dari halaman recording
+    # Jika datang dari halaman recording
     if st.session_state.get('from_recording', False) and 'selected_audio_file' in st.session_state:
         try:
-            # Ambil file dari server
             selected_audio_file = st.session_state['selected_audio_file']
             audio_url = f"{FLASK_SERVER_URL}/uploads/{selected_audio_file}"
             audio_content = requests.get(audio_url).content
 
-            # Simpan file sementara
-            temp_audio_path = f"temp_{selected_audio_file}"
-            with open(temp_audio_path, 'wb') as f:
-                f.write(audio_content)
+            with tempfile.NamedTemporaryFile(delete=False, suffix='.' + selected_audio_file.split('.')[-1]) as tmp_file:
+                tmp_file.write(audio_content)
+                audio_path = tmp_file.name
 
-            audio_path = temp_audio_path
+            st.session_state['audio_path'] = audio_path
+            st.session_state['audio_filename'] = selected_audio_file
             st.audio(audio_url)
-
             st.success(f"Berhasil memuat audio: {selected_audio_file}")
             st.session_state['from_recording'] = False
 
@@ -283,42 +291,50 @@ def render_audio_to_materi():
             return
 
     else:
-        # Fitur drag & drop tetap aktif
-        audio_file = st.file_uploader("Upload penjelasan materi", type=['wav', 'mp3'])
-        if audio_file is not None:
-            audio_path = save_uploaded_file(audio_file)
-            st.audio(audio_path)
+        uploaded_file = st.file_uploader("Upload penjelasan materi", type=['wav', 'mp3'])
+        if uploaded_file is not None:
+            audio_path = save_uploaded_file(uploaded_file)
+            if audio_path:
+                st.session_state['audio_path'] = audio_path
+                st.session_state['audio_filename'] = uploaded_file.name
+                st.audio(audio_path)
 
-    # Mulai rangkum jika audio_path ada
-    if 'audio_path' not in locals() and 'audio_path' in st.session_state:
-        audio_path = st.session_state['audio_path']  # backup untuk rerun
+    # Ambil path dari session_state jika sebelumnya sudah ada
+    if not audio_path:
+        audio_path = st.session_state.get('audio_path')
 
-    if 'audio_path' in locals():
+    # Tampilkan nama file meskipun audio tidak diplay
+    if audio_path and 'audio_filename' in st.session_state:
+        st.markdown(f"**File saat ini:** `{st.session_state['audio_filename']}`")
+
+    # Tombol Summarize
+    if audio_path:
         if st.button('Summarize audio'):
             with st.spinner('Merangkum Materi...'):
                 summary = summarize(audio_path)
                 st.session_state['summary'] = summary
-                st.session_state['audio_path'] = audio_path
                 st.session_state['tampilkan_tombol_modul'] = True
 
-        if 'summary' in st.session_state:
-            st.subheader("Ringkasan")
-            st.info(st.session_state['summary'])
+    # Menampilkan ringkasan
+    if 'summary' in st.session_state:
+        st.subheader("Ringkasan")
+        st.info(st.session_state['summary'])
 
-        if st.session_state.get('tampilkan_tombol_modul', False):
-            if st.button('Buat Modul'):
-                with st.spinner('Membuat Modul...'):
-                    modul_text = modul(audio_path)
-                    st.session_state['modul_text'] = modul_text
-                    st.subheader("Modul")
-                    st.info(modul_text)
+    # Tombol dan output Modul
+    if st.session_state.get('tampilkan_tombol_modul', False):
+        if st.button('Buat Modul'):
+            with st.spinner('Membuat Modul...'):
+                modul_text = modul(audio_path)
+                st.session_state['modul_text'] = modul_text
+                st.subheader("Modul")
+                st.info(modul_text)
 
-        if 'modul_text' in st.session_state:
-            if st.button("Buat Quiz"):
-                st.session_state.current_page = 'quiz_generator'
-                st.session_state.from_modul = True
-                st.rerun()
-
+    # Tombol ke Quiz Generator
+    if 'modul_text' in st.session_state:
+        if st.button("Buat Quiz"):
+            st.session_state.current_page = 'quiz_generator'
+            st.session_state.from_modul = True
+            st.rerun()
 
 
 
