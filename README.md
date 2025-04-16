@@ -119,6 +119,9 @@ SmartNote/
 
 - Gunakan serial monitor (misal Arduino IDE) untuk melihat log dari ESP32 jika terjadi error saat merekam atau mengupload.
 
+# REMINDER !!!
+untuk menjalankan aplikasi streamlitnya buat file .env yang berisi api key, api flask, dan esp32url
+
 
 
 
