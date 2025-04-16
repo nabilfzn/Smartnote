@@ -15,7 +15,7 @@ def microfon():
 
     # Configuration variables
     FLASK_SERVER_URL = os.getenv("FLASK_SERVER")  # Change to your Flask server IP/port
-    ESP32_URL = "http://192.168.100.35"  # Change to your ESP32's IP address
+    ESP32_URL = os.getenv("ESP32_URL")  # Change to your ESP32's IP address
 
     # Set page configuration
     # st.set_page_config(
