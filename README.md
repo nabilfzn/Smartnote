@@ -4,7 +4,7 @@
 
 Sistem ini secara instan mengubah rekaman menjadi **ringkasan** dan **modul pembelajaran** yang jelas dan terstruktur. Selain itu, SmartNote juga menyediakan **Quiz Generator** yang menghasilkan soal-soal berdasarkan materi tersebut, sehingga siswa dapat langsung mengukur pemahaman mereka.
 
-> Dengan SmartNote, belajar jadi lebih **mudah**, **efisien**, dan **terarah**.
+> SmartNote, Ringkas Mengajar Cerdas Mencatat
 
 ---
 
